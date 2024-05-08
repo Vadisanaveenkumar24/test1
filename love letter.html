@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Love Letter</title>
+<style>
+  body {
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+  }
+  .container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+  .question {
+    cursor: pointer;
+    color: blue;
+    text-decoration: underline;
+  }
+  #loveLetter {
+    background-color: #ffe6e6;
+    padding: 20px;
+    border-radius: 10px;
+    display: none;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1>My Love Letter to You</h1>
+
+  <p>My Dearest,</p>
+
+  <p>Today, I want to express my feelings for you through this letter. But before I do, I have a few questions...</p>
+
+  <div id="questions">
+    <p class="question">Question 1: What is your favorite memory with me?</p>
+    <div id="answer1" style="display:none">
+      <input type="text" id="favoriteMemory">
+      <button onclick="revealAnswer(1)">Submit</button>
+    </div>
+
+    <p class="question">Question 2: What is your dream vacation destination?</p>
+    <div id="answer2" style="display:none">
+      <input type="text" id="dreamDestination">
+      <button onclick="revealAnswer(2)">Submit</button>
+    </div>
+
+    <p class="question">Question 3: What is your favorite thing about us?</p>
+    <div id="answer3" style="display:none">
+      <input type="text" id="favoriteThing">
+      <button onclick="revealAnswer(3)">Submit</button>
+    </div>
+  </div>
+
+  <div id="loveLetter">
+    <p>My Love,</p>
+    <p>Thank you for sharing your thoughts with me. Now, I want you to know...</p>
+    <p>(Your love letter goes here)</p>
+  </div>
+</div>
+
+<script>
+function revealAnswer(questionNumber) {
+  var answerId = "answer" + questionNumber;
+  var questionId = "question" + questionNumber;
+  var answer = document.getElementById(answerId);
+  var question = document.getElementById(questionId);
+  var input = answer.querySelector("input").value;
+  
+  // Display submitted answer
+  answer.innerHTML = "<p>Your answer: " + input + "</p>";
+  
+  // Hide the question
+  question.style.display = "none";
+  
+  // Show next question or love letter if all questions answered
+  if (questionNumber === 3) {
+    document.getElementById("loveLetter").style.display = "block";
+  } else {
+    var nextQuestionNumber = questionNumber + 1;
+    document.getElementById("question" + nextQuestionNumber).style.display = "block";
+  }
+}
+</script>
+
+</body>
+</html>
